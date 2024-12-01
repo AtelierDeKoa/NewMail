@@ -1,0 +1,91 @@
+:: StoryTitle
+New Mail
+
+
+:: StoryData
+{
+  "ifid": "BCA6B42C-CAFD-48A0-B4EF-570DA5414F1F",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "New Mail",
+  "zoom": 1
+}
+
+
+:: Abrir correo {"position":"625,375","size":"100,100"}
+<div id="mail">
+<div style="background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;">
+<img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/MailTop.png" style="background-color:#292929; position:absolute; top:0px; left:25px"> </div>
+<div style="padding-left: 20px">\
+<h5 style="color:black;font-weight: bold;">Reunión exalumn@s</h5>\
+<p class="textoMail">De: Jaime Rodriguez < jaimerodriguez@gm.com> </p>\
+<div class="divider"></div>\
+<p style="color:black; font-size:15px"> Hola Patricia, ¿qué tal estás? 
+La gente de la clase está organizando una cena de antiguos alumnos. 
+Sé que hace muchisimo que no nos vemos, pero nos gustaría que vinieras.
+Este correo es la única opción que tengo para contactarte, espero que te llegue.
+
+
+Si decides venir contestame por aquí y te mando los detalles.
+ </p>
+</div>
+</div>
+[[Contestar mail]]
+[[Ignorar]] 
+
+
+:: Contestar mail {"position":"600,500","size":"100,100"}
+
+
+
+:: Ignorar {"position":"775,375","size":"100,100"}
+
+
+
+:: New Mail {"position":"700,250","size":"100,100"}
+<div class="Notification">
+<p>📧 Tienes un nuevo correo</p>
+</div>
+<audio autoplay> <source src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/system-notification-199277.mp3"> </audio>
+
+
+
+
+[[Abrir correo]] 
+[[Ignorar]]
+
+
+:: StoryStylesheet [stylesheet]
+@keyframes popUp{
+  0% {opacity:0;}
+  100%{opacity:1;}
+}
+
+.Notification{
+  border-radius: 25px;
+  background:#f1f1f1;
+  width:400px;
+  height:auto;
+  color:black;
+  text-align:center;
+  margin:auto;
+  float:right;
+  animation-name:popUp;
+  animation-duration:2s;
+}
+
+#mail{
+  border-radius: 25px;
+  background:#f1f1f1;
+}
+
+.textoMail{
+  color:gray;
+  font-size:10px;
+}
+
+.divider{
+  background-color:lightgray;
+  height:2px;
+  width:95%;
+} 
