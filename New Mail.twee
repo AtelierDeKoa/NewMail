@@ -7,12 +7,12 @@ New Mail
   "ifid": "BCA6B42C-CAFD-48A0-B4EF-570DA5414F1F",
   "format": "Harlowe",
   "format-version": "3.3.9",
-  "start": "New Mail",
+  "start": "Nuevo Correo",
   "zoom": 1
 }
 
 
-:: Abrir correo {"position":"625,375","size":"100,100"}
+:: Abrir correo {"position":"625,425","size":"100,100"}
 <div id="mail">
 <div style="background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;">
 <img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/MailTop.png" style="background-color:#292929; position:absolute; top:0px; left:25px"> </div>
@@ -20,7 +20,7 @@ New Mail
 <h5 style="color:black;font-weight: bold;">Reunión exalumn@s</h5>\
 <p class="textoMail">De: Jaime Rodriguez < jaimerodriguez@gm.com> </p>\
 <div class="divider"></div>\
-<p style="color:black; font-size:15px"> Hola Patricia, ¿qué tal estás? 
+<p style="color:black; font-size:15px"> Hola $name, ¿qué tal estás? 
 La gente de la clase está organizando una cena de antiguos alumnos. 
 Sé que hace muchisimo que no nos vemos, pero nos gustaría que vinieras.
 Este correo es la única opción que tengo para contactarte, espero que te llegue.
@@ -31,18 +31,39 @@ Si decides venir contestame por aquí y te mando los detalles.
 </div>
 </div>
 [[Contestar mail]]
-[[Ignorar]] 
+[[Ignorar]]
 
 
-:: Contestar mail {"position":"600,500","size":"100,100"}
+:: Contestar mail {"position":"600,550","size":"100,100"}
+<div id="mail">
+<div style="background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;">
+<img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/MailTop.png" style="background-color:#292929; position:absolute; top:0px; left:25px"> </div>
+<div style="padding-left: 20px">\
+<h5 style="color:black;font-weight: bold;">RE: Reunión exalumn@s</h5>\
+<div class="divider"></div>\
+<p class="textoMail">De: $name < $name@gm.com> </p>\
+<div class="divider"></div>\
+<p class="textoMail">Para: Jaime Rodriguez < jaimerodriguez@gm.com> </p>\
+<div class="divider"></div>\
+<p style="color:black; font-size:15px"> Hola Jaime, 
+ </p>
+</div>
+</div>
+
+
+:: Custom {"position":"700,175","size":"100,100"}
+(set:$name to (prompt:[Para hacer el juego más inmersivo, introduce tu nombre:],"","","Aceptar"))
+(if:$name is not "")[Tu nombre es: (text-style:"underline")[$name].
+
+[[Continuar->Notification]] ]
 
 
 
-:: Ignorar {"position":"775,375","size":"100,100"}
+:: Ignorar {"position":"775,425","size":"100,100"}
 
 
 
-:: New Mail {"position":"700,250","size":"100,100"}
+:: Notification {"position":"700,300","size":"100,100"}
 <div class="Notification">
 <p>📧 Tienes un nuevo correo</p>
 </div>
@@ -53,6 +74,13 @@ Si decides venir contestame por aquí y te mando los detalles.
 
 [[Abrir correo]] 
 [[Ignorar]]
+
+
+:: Nuevo Correo {"position":"700,50","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/GlitchScreen.gif" width="100%" height="auto" style="border-radius:25px">
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/NuevoCorreo.png" style="position:absolute; top:0px" width="100%" height="auto">
+<div style="position:absolute; top:350px; left:200px">(text-size:2)[ (text-colour: white)+(text-style:"bold","underline")[[Comenzar->Custom]] ]</div>
+
 
 
 :: StoryStylesheet [stylesheet]
@@ -88,4 +116,4 @@ Si decides venir contestame por aquí y te mando los detalles.
   background-color:lightgray;
   height:2px;
   width:95%;
-} 
+}
