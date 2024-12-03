@@ -1,2 +1,2 @@
 Juego de terror "Nuevo correo".
-Creado por Ana Martín en Twinety.org
+Creado por Ana Martin en Twinety.org
