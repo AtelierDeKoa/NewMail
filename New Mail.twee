@@ -34,7 +34,7 @@ Si decides venir contestame por aquí y te mando los detalles.
 [[Ignorar]]
 
 
-:: Abrir correo2 {"position":"450,925","size":"100,100"}
+:: Abrir correo2 {"position":"575,925","size":"100,100"}
 <div id="mail">
 <div style="background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;">
 <img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/MailTop.png" style="background-color:#292929; position:absolute; top:0px; left:25px"> </div>
@@ -46,10 +46,16 @@ Si decides venir contestame por aquí y te mando los detalles.
  </p>
 </div>
 </div>
+[[Continuar->Viernes]]
 
 
-:: Abrir la puerta {"position":"900,1050","size":"100,100"}
+:: Abrir la puerta {"position":"1000,1050","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/PuertaNota.jpg" width="70%">
+Me han dejado una nota en la puerta, pero no veo a nadie por aquí.
 
+[[Leer nota->nota]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/open-door-sound-247415.mp3" autoplay>
 
 
 :: Contestar mail {"position":"575,550","size":"100,100"}
@@ -99,8 +105,11 @@ Después de tanto tiempo me siento una persona completamente diferente, lo mismo
 [[No creo que hayan cambiado->No contestar mail]]
 
 
-:: Ignorar puerta {"position":"1025,925","size":"100,100"}
-
+:: Ignorar puerta {"position":"850,925","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/SueloNota.jpg" width="100%">
+Me han pasado una nota por debajo de la puerta
+[[Leer nota->nota]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/papel-81613.mp3" autoplay>
 
 
 :: Mensaje {"position":"825,675","size":"100,100"}
@@ -116,7 +125,27 @@ Después de tanto tiempo me siento una persona completamente diferente, lo mismo
 [[Ignorar->Puerta]] ]
 
 
-:: Mirar por la mirilla {"position":"900,925","size":"100,100"}
+:: Mensaje2 {"position":"725,925","size":"100,100"}
+(align:"=><=")+(text-style:"italic")[Número desconocido]
+<div class="textMessage">Hola, $name, soy Jaime
+</div>
+<div class="textMessage">Me he cruzado con tu hermano por el pueblo y me ha dado tu número
+</div>
+<div class="textMessage">Espero que hayas recibido mi correo y que vengas a la reunión  😊 
+</div>
+<div class="textMessage2">Hola, Jaime
+</div>
+<div class="textMessage2">No he mirado el correo
+</div>
+<div class="textMessage2">Dime sitio y hora y nos vemos allí  🙂
+</div>
+<div class="textMessage">La reunión es el próximo viernes en el pub del pueblo a las 22:00 😊
+</div>
+
+[[Continuar->Viernes]]
+
+
+:: Mirar por la mirilla {"position":"1000,925","size":"100,100"}
 <Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Door.jpg" width="100%">
 
 [[Abrir la puerta]]
@@ -140,7 +169,7 @@ Después de tanto tiempo me siento una persona completamente diferente, lo mismo
 <audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/new-message.mp3" autoplay>
 
 
-:: Notificacion2 {"position":"450,800","size":"100,100"}
+:: Notificacion2 {"position":"575,800","size":"100,100"}
 <div class="Notification">
 <p>📧 Tienes un nuevo correo</p>
 </div>
@@ -171,18 +200,18 @@ Después de tanto tiempo me siento una persona completamente diferente, lo mismo
 (align:"=><=")+(text-size:2)+(text-colour: white)+(text-style:"bold","underline")[[[Comenzar->Custom]]]
 
 
-:: Pub {"position":"600,1325","size":"100,100"}
+:: Pub {"position":"700,1225","size":"100,100"}
 
 
 
-:: Puerta {"position":"900,800","size":"100,100"}
+:: Puerta {"position":"925,800","size":"100,100"}
 Están llamando a la puerta...
 [[Mirar por la mirilla]]
 [[Ignorar->Ignorar puerta]]
 <audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/knocking-on-door.mp3" autoplay loop>
 
 
-:: Responder {"position":"750,800","size":"100,100"}
+:: Responder {"position":"725,800","size":"100,100"}
 (align:"=><=")+(text-style:"italic")[Número desconocido]
 <div class="textMessage">Hola, $name, soy Jaime
 </div>
@@ -190,11 +219,26 @@ Están llamando a la puerta...
 </div>
 <div class="textMessage">Espero que hayas recibido mi correo y que vengas a la reunión  😊 
 </div>
+<div class="textMessage2">Hola, Jaime
+</div>
+</div>
+<div class="textMessage2">No he mirado el correo 
+</div>
+</div>
+<div class="textMessage2">Dime sitio y hora y nos vemos allí  🙂
+</div>
+
+(align:"==>")[[[Enviar->Mensaje2]]]
+
+
+:: Viernes {"position":"700,1100","size":"100,100"}
 
 
 
-:: Viernes {"position":"600,1200","size":"100,100"}
-
+:: nota {"position":"850,1050","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Nota.png">
+Creo que voy a tener que ir...
+[[Continuar->Viernes]]
 
 
 :: StoryStylesheet [stylesheet]
@@ -240,4 +284,18 @@ Están llamando a la puerta...
   width:max-content;
   color:black;
   padding:10px;
+}
+
+.textMessage2{
+  background-color:lightgray;
+  border-radius:25px;
+  min-width: 100px;
+  max-width: 70%;
+  width:max-content;
+  color:black;
+  padding:10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 0;
 }
