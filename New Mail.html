@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play New Mail.</tw-noscript></noscript></tw-story>
-<tw-storydata name="New Mail" startnode="6" creator="Twine" creator-version="2.9.2" format="Harlowe" format-version="3.3.9" ifid="BCA6B42C-CAFD-48A0-B4EF-570DA5414F1F" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@keyframes popUp{
+<tw-storydata name="New Mail" startnode="13" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="BCA6B42C-CAFD-48A0-B4EF-570DA5414F1F" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@keyframes popUp{
   0% {opacity:0;}
   100%{opacity:1;}
 }
@@ -69,7 +69,7 @@ Si decides venir contestame por aquí y te mando los detalles.
 &lt;/div&gt;
 &lt;/div&gt;
 [[Contestar mail]]
-[[Ignorar]]</tw-passagedata><tw-passagedata pid="2" name="Contestar mail" tags="" position="675,550" size="100,100">&lt;div id=&quot;mail&quot;&gt;
+[[Ignorar]]</tw-passagedata><tw-passagedata pid="2" name="Abrir la puerta" tags="" position="900,1050" size="100,100"></tw-passagedata><tw-passagedata pid="3" name="Contestar mail" tags="" position="575,550" size="100,100">&lt;div id=&quot;mail&quot;&gt;
 &lt;div style=&quot;background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;&quot;&gt;
 &lt;img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/MailTop.png&quot; style=&quot;background-color:#292929; position:absolute; top:0px; left:25px&quot;&gt; &lt;/div&gt;
 &lt;div style=&quot;padding-left: 20px&quot;&gt;\
@@ -79,36 +79,38 @@ Si decides venir contestame por aquí y te mando los detalles.
 &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;\
 &lt;p class=&quot;textoMail&quot;&gt;Para: Jaime Rodriguez &lt; jaimerodriguez@gm.com&gt; &lt;/p&gt;\
 &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;\
-&lt;p style=&quot;color:black; font-size:15px&quot;&gt; Hola Jaime, 
+&lt;p style=&quot;color:black; font-size:15px&quot;&gt; Buenas Jaime,
+¡Cuánto tiempo! Dime sitio y hora y nos vemos allí  🙂 
  &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-[[Enviar-&gt;Correo respuesta]]</tw-passagedata><tw-passagedata pid="3" name="Ignorar" tags="" position="850,425" size="100,100">(display:&quot;Graduacion&quot;)
+[[Enviar-&gt;Correo respuesta]]</tw-passagedata><tw-passagedata pid="4" name="Correo respuesta" tags="" position="575,675" size="100,100">(if:(history:) contains &quot;Ignorar&quot;)[Espero que salga bien...
+[[Continuar-&gt;Notificacion2]] ]
+(else:)[(display:&quot;Graduacion&quot;)
+[[Continuar-&gt;Notificacion2]] ]</tw-passagedata><tw-passagedata pid="5" name="Custom" tags="" position="700,175" size="100,100">(set:$name to (prompt:[Introduce tu nombre:],&quot;&quot;,&quot;&quot;,&quot;Aceptar&quot;))
+(if:$name is not &quot;&quot;)[&lt;div style=&quot;&quot;&gt;Recomendamos jugar en PC o usar el modo pantalla horizontal y es necesario activar el volumen para una experiencia más inmersiva.&lt;/div&gt;
+
+[[Continuar-&gt;Notification]] ]</tw-passagedata><tw-passagedata pid="6" name="Graduacion" tags="" position="300,400" size="100,100">Hace muchísimos años que no veo a ningún compañero de clase. Desde que nos graduamos y me fui del pueblo, no he vuelto a hablar con nadie de mi pasado. No guardo muy buenos recuerdos de esa época, no era la persona más popular de clase.
+Después de tanto tiempo me siento una persona completamente diferente, lo mismo ellos también han cambiado.
+&lt;Img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/graduation.png&quot; width=&quot;100%&quot;&gt;</tw-passagedata><tw-passagedata pid="7" name="Ignorar" tags="" position="700,550" size="100,100">(display:&quot;Graduacion&quot;)
 ¿Debería ir?
 
 [[Voy a darles una oportunidad-&gt;Contestar mail]]
-[[No creo que hayan cambiado-&gt;No contestar mail]]</tw-passagedata><tw-passagedata pid="4" name="Notification" tags="" position="700,300" size="100,100">&lt;div class=&quot;Notification&quot;&gt;
-&lt;p&gt;📧 Tienes un nuevo correo&lt;/p&gt;
+[[No creo que hayan cambiado-&gt;No contestar mail]]</tw-passagedata><tw-passagedata pid="8" name="Ignorar puerta" tags="" position="1025,925" size="100,100"></tw-passagedata><tw-passagedata pid="9" name="Mensaje" tags="" position="825,675" size="100,100">(align:&quot;=&gt;&lt;=&quot;)+(text-style:&quot;italic&quot;)[Número desconocido]
+&lt;div class=&quot;textMessage&quot;&gt;Hola, $name, soy Jaime
 &lt;/div&gt;
-&lt;audio autoplay&gt; &lt;source src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/system-notification-199277.mp3&quot;&gt; &lt;/audio&gt;
+&lt;div class=&quot;textMessage&quot;&gt;Me he cruzado con tu hermano por el pueblo y me ha dado tu número
+&lt;/div&gt;
+&lt;div class=&quot;textMessage&quot;&gt;Espero que hayas recibido mi correo y que vengas a la reunión  😊 
+&lt;/div&gt;
 
+(align:&quot;==&gt;&quot;)[ [[Responder]]
+[[Ignorar-&gt;Puerta]] ]</tw-passagedata><tw-passagedata pid="10" name="Mirar por la mirilla" tags="" position="900,925" size="100,100">&lt;Img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Door.jpg&quot; width=&quot;100%&quot;&gt;
 
+[[Abrir la puerta]]
+[[Ignorar-&gt;Ignorar puerta]]
 
-
-
-(align:&quot;==&gt;&quot;)[ [[Abrir correo]] ] </tw-passagedata><tw-passagedata pid="5" name="Custom" tags="" position="700,175" size="100,100">(set:$name to (prompt:[Introduce tu nombre:],&quot;&quot;,&quot;&quot;,&quot;Aceptar&quot;))
-(if:$name is not &quot;&quot;)[&lt;div style=&quot;&quot;&gt;Recomendamos jugar en PC o usar el modo pantalla horizontal.
-Es necesario activar el volumen para una experiencia más inmersiva.&lt;/div&gt;
-
-[[Continuar-&gt;Notification]] ]
-</tw-passagedata><tw-passagedata pid="6" name="Nuevo Correo" tags="" position="700,50" size="100,100">&lt;Img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/GlitchNewMail.gif&quot; width=&quot;100%&quot; height=&quot;auto&quot; style=&quot;border-radius:25px&quot;&gt;\
-(align:&quot;=&gt;&lt;=&quot;)+(text-size:2)+(text-colour: white)+(text-style:&quot;bold&quot;,&quot;underline&quot;)[[[Comenzar-&gt;Custom]]]</tw-passagedata><tw-passagedata pid="7" name="Graduacion" tags="" position="400,425" size="100,100">Hace muchísimos años que no veo a ningún compañero de clase. Desde que nos graduamos y me fui del pueblo, no he vuelto a hablar con nadie de mi pasado. No guardo muy buenos recuerdos de esa época, no era la persona más popular de clase.
-Después de tanto tiempo me siento una persona completamente diferente, lo mismo ellos también han cambiado.
-&lt;Img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/graduation.png&quot; width=&quot;100%&quot;&gt;
-</tw-passagedata><tw-passagedata pid="8" name="Correo respuesta" tags="" position="675,675" size="100,100">(if:(history:) contains &quot;Ignorar&quot;)[Espero que salga bien...
-[[Continuar]] ]
-(else:)[(display:&quot;Graduacion&quot;)
-[[Continuar]] ]</tw-passagedata><tw-passagedata pid="9" name="Continuar" tags="" position="675,800" size="100,100"></tw-passagedata><tw-passagedata pid="10" name="No contestar mail" tags="" position="850,550" size="100,100">&lt;div class=&quot;Notification&quot;&gt;
+&lt;audio src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/knocking-on-door.mp3&quot; autoplay loop&gt;</tw-passagedata><tw-passagedata pid="11" name="No contestar mail" tags="" position="825,550" size="100,100">&lt;div class=&quot;Notification&quot;&gt;
 &lt;p&gt;💬 3 mensajes sin leer&lt;/p&gt;
 &lt;/div&gt;
 
@@ -119,21 +121,46 @@ Después de tanto tiempo me siento una persona completamente diferente, lo mismo
 
 
 (align:&quot;==&gt;&quot;)[[Leer mensajes-&gt;Mensaje]]
-&lt;audio src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/new-message.mp3&quot; autoplay&gt;
+&lt;audio src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/new-message.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="12" name="Notification" tags="" position="700,300" size="100,100">&lt;div class=&quot;Notification&quot;&gt;
+&lt;p&gt;📧 Tienes un nuevo correo&lt;/p&gt;
+&lt;/div&gt;
+&lt;audio autoplay&gt; &lt;source src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/system-notification-199277.mp3&quot;&gt; &lt;/audio&gt;
 
-</tw-passagedata><tw-passagedata pid="11" name="Mensaje" tags="" position="850,675" size="100,100">(align:&quot;=&gt;&lt;=&quot;)+(text-style:&quot;italic&quot;)[Número desconocido]
+
+
+
+
+(align:&quot;==&gt;&quot;)[ [[Abrir correo]] ]</tw-passagedata><tw-passagedata pid="13" name="Nuevo Correo" tags="" position="700,50" size="100,100">&lt;Img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/GlitchNewMail.gif&quot; width=&quot;100%&quot; height=&quot;auto&quot; style=&quot;border-radius:25px&quot;&gt;\
+(align:&quot;=&gt;&lt;=&quot;)+(text-size:2)+(text-colour: white)+(text-style:&quot;bold&quot;,&quot;underline&quot;)[[[Comenzar-&gt;Custom]]]</tw-passagedata><tw-passagedata pid="14" name="Puerta" tags="" position="900,800" size="100,100">Están llamando a la puerta...
+[[Mirar por la mirilla]]
+[[Ignorar-&gt;Ignorar puerta]]
+&lt;audio src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/knocking-on-door.mp3&quot; autoplay loop&gt;</tw-passagedata><tw-passagedata pid="15" name="Responder" tags="" position="750,800" size="100,100">(align:&quot;=&gt;&lt;=&quot;)+(text-style:&quot;italic&quot;)[Número desconocido]
 &lt;div class=&quot;textMessage&quot;&gt;Hola, $name, soy Jaime
 &lt;/div&gt;
 &lt;div class=&quot;textMessage&quot;&gt;Me he cruzado con tu hermano por el pueblo y me ha dado tu número
 &lt;/div&gt;
-&lt;div class=&quot;textMessage&quot;&gt;Espero que hayas recibido mi correo y que vengas a la reunión  🙂 
+&lt;div class=&quot;textMessage&quot;&gt;Espero que hayas recibido mi correo y que vengas a la reunión  😊 
 &lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="16" name="Notificacion2" tags="" position="450,800" size="100,100">&lt;div class=&quot;Notification&quot;&gt;
+&lt;p&gt;📧 Tienes un nuevo correo&lt;/p&gt;
+&lt;/div&gt;
+&lt;audio autoplay&gt; &lt;source src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/system-notification-199277.mp3&quot;&gt; &lt;/audio&gt;
 
-(align:&quot;==&gt;&quot;)[ [[Responder]]
-[[Ignorar-&gt;Puerta]] ]</tw-passagedata><tw-passagedata pid="12" name="Responder" tags="" position="800,800" size="100,100"></tw-passagedata><tw-passagedata pid="13" name="Puerta" tags="" position="925,800" size="100,100">Están llamando a la puerta...
-[[Mirar por la mirilla]]
-[[Ignorar-&gt;]]
-&lt;audio src=&quot;https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/knocking-on-door.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="14" name="Mirar por la mirilla" tags="" position="925,925" size="100,100">&lt;Img src=&quot;&quot;&gt;</tw-passagedata><tw-passagedata pid="15" name="Ignorar-&gt;" tags="" position="1050,925" size="100,100"></tw-passagedata></tw-storydata>
+
+
+
+
+(align:&quot;==&gt;&quot;)[ [[Abrir correo-&gt;Abrir correo2]] ]</tw-passagedata><tw-passagedata pid="17" name="Abrir correo2" tags="" position="450,925" size="100,100">&lt;div id=&quot;mail&quot;&gt;
+&lt;div style=&quot;background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;&quot;&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/MailTop.png&quot; style=&quot;background-color:#292929; position:absolute; top:0px; left:25px&quot;&gt; &lt;/div&gt;
+&lt;div style=&quot;padding-left: 20px&quot;&gt;\
+&lt;h5 style=&quot;color:black;font-weight: bold;&quot;&gt;Re: Reunión exalumn@s&lt;/h5&gt;\
+&lt;p class=&quot;textoMail&quot;&gt;De: Jaime Rodriguez &lt; jaimerodriguez@gm.com&gt; &lt;/p&gt;\
+&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;\
+&lt;p style=&quot;color:black; font-size:15px&quot;&gt; La reunión es el próximo viernes en el pub del pueblo a las 22:00 😊 
+ &lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="Pub" tags="" position="600,1325" size="100,100"></tw-passagedata><tw-passagedata pid="19" name="Viernes" tags="" position="600,1200" size="100,100"></tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
