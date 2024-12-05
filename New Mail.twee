@@ -12,6 +12,23 @@ New Mail
 }
 
 
+:: \ Eleccion {"position":"600,1850","size":"100,100"}
+(set:$timer to (random:5,10))\
+|2>[(text-size:1.5)[Rápido, hay que actuar: $timer]]
+(live:1s)[(set:$timer to it - 1)(rerun:?2)(if:$timer is 0)[(go-to:"Muerte")]]
+[[Atacar]]
+[[Huir]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/heartbeat-sound-effects-for-you-122458.mp3" autoplay>
+
+
+:: (either:"Golpe","Mirar atrás") {"position":"800,1975","size":"100,100"}
+
+
+
+:: (either:"SueloNota","Golpe") {"position":"1075,800","size":"100,100"}
+
+
+
 :: Abrir correo {"position":"700,425","size":"100,100"}
 <div id="mail">
 <div style="background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;">
@@ -58,6 +75,57 @@ Me han dejado una nota en la puerta, pero no veo a nadie por aquí.
 <audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/open-door-sound-247415.mp3" autoplay>
 
 
+:: Atacar {"position":"525,1975","size":"100,100"}
+(set:$probSurvive to 50)
+(if:(history:)contains "Abrir la puerta")[(set:$probSurvive to 80)]
+(if:(history:)contains "Huir")[(set:$probSurvive to 30)]
+
+(if:$probSurvive>=(random:0,100))[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/BosqueAtacar.jpg" width="100%"><audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/man-scream-121085.mp3" autoplay>(live:3s)[(go-to:"Casa")]](else:)[(go-to:"Golpe")]
+
+
+:: Bosque a través {"position":"550,2250","size":"100,100"}
+Estoy muy lejos del pueblo, creo que tendré que atacarles...
+[[Atacar]]
+
+
+:: BosqueBien {"position":"600,1475","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/sandstone.jpg" width="100%">
+Parece que este es el sitio.
+Que figuras tan extrañas...
+
+[[Continuar->BosqueRitual]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/your-forest-footsteps-67678.mp3" autoplay>
+
+
+:: BosqueMal {"position":"800,1600","size":"100,100"}
+<Img src="https://github.com/AtelierDeKoa/NewMail/blob/master/Img/Bosque.jpg?raw=true" width="50%" id="bosqueMal">
+
+¿Dónde estoy? ¿Qué está pasando?
+[[Tienes las manos atadas->RitualMal]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/the-sound-of-grass-in-the-forest-footsteps-248351.mp3" autoplay>
+
+
+:: BosqueRitual {"position":"600,1600","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/forest-skull.jpg" width="100%">
+Hay huesos de animales, me está dando mal rollo...
+
+[[Continuar->RitualBien]]
+
+
+:: Camino principal {"position":"825,2225","size":"100,100"}
+Estoy escuchando un coche, aunque ya no sé si puedo fiarme...
+[[Parar el coche y pedir ayuda->Pedir ayuda]]
+[[Intentar llegar al pueblo->Pueblo]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/car-passing-by-272055.mp3" autoplay>
+
+
+:: Casa {"position":"300,2025","size":"100,100"}
+Por fin en casa. La cabeza me da vueltas, recuerdo todo como una pesadilla...
+(live:1.5s)[<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/new-message.mp3" autoplay>(stop:)]
+(live:4s)[(go-to:"Mensaje hermano")]
+
+
 :: Contestar mail {"position":"575,550","size":"100,100"}
 <div id="mail">
 <div style="background-color:#292929; position:absolute; top:0px; width:100%; height:51px; border-radius:25px 25px 0px 0px;">
@@ -91,10 +159,64 @@ Me han dejado una nota en la puerta, pero no veo a nadie por aquí.
 [[Continuar->Notification]] ]
 
 
+:: FinalBueno {"position":"300,2275","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Noticias2.jpg" width="100%">
+
+[[Volver al chat]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/tv-news-logo-154117.mp3" autoplay id="news">
+<script>
+  var audio = document.getElementById("news");
+  audio.volume = 0.1;
+</script>
+
+
+
+:: FinalDetencion {"position":"1000,2350","size":"100,100"}
+<!--Final detención-->\
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/DetenidosRitual.jpg" width="100%">
+Esta vez me he librado por los pelos, ¿podré hacerlo mejor?
+
+[[Volver a intentarlo->Notification]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/tv-news-logo-154117.mp3" autoplay id="news">
+<script>
+  var audio = document.getElementById("news");
+  audio.volume = 0.1;
+</script>
+
+
+:: Golpe {"position":"800,1475","size":"100,100"}
+(set:$golpe to false)
+|2>[(if:(history:) contains "Puerta" and $golpe is false)[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/SueloNota.jpg" width="100%">\
+Me han pasado una nota por debajo de la puerta]\
+(else-if:(history:) contains "Instrucciones" and $golpe is false)[No me está gustando esto...]\
+(else-if:(history:) contains "Huir" or "Atacar" and $golpe is false)[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/BosqueMirarAtras.jpg" width="100%">]]
+
+(live:2s)[<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/golpe-fuerte-36583.mp3" autoplay>(stop:)]
+(live:3s)[(set:$golpe to true) (rerun:?2)(stop:)]
+(live:6s)[(if:(history:)contains "Huir")[(go-to:"Muerte")](else:)(go-to:"BosqueMal")]
+
+
+
 :: Graduacion {"position":"300,400","size":"100,100"}
 Hace muchísimos años que no veo a ningún compañero de clase. Desde que nos graduamos y me fui del pueblo, no he vuelto a hablar con nadie de mi pasado. No guardo muy buenos recuerdos de esa época, no era la persona más popular de clase.
 Después de tanto tiempo me siento una persona completamente diferente, lo mismo ellos también han cambiado.
 <Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/graduation.png" width="100%">
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/some-memories-16007.mp3" autoplay id="someMemories">
+<script>
+  var audio = document.getElementById("someMemories");
+  audio.volume = 0.2;
+</script>
+
+
+:: Huir {"position":"675,1975","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/BosqueCorrer.jpg" width="100%">
+Tengo que buscar ayuda, pero no sé si me siguen...
+
+[[Mirar atrás->(either:"Golpe","Mirar atrás")]]
+[[Seguir corriendo]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/the-sound-of-grass-in-the-forest-footsteps-248351.mp3" autoplay>
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/heartbeat-sound-effects-for-you-122458.mp3" autoplay loop>
 
 
 :: Ignorar {"position":"700,550","size":"100,100"}
@@ -105,11 +227,11 @@ Después de tanto tiempo me siento una persona completamente diferente, lo mismo
 [[No creo que hayan cambiado->No contestar mail]]
 
 
-:: Ignorar puerta {"position":"850,925","size":"100,100"}
-<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/SueloNota.jpg" width="100%">
-Me han pasado una nota por debajo de la puerta
-[[Leer nota->nota]]
-<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/papel-81613.mp3" autoplay>
+:: Instrucciones {"position":"700,1350","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Instrucciones.png" width="100%">
+¿Han preparado algún tipo de juego?
+[[Jugar->BosqueBien]]
+[[Me voy->Golpe]]
 
 
 :: Mensaje {"position":"825,675","size":"100,100"}
@@ -123,6 +245,15 @@ Me han pasado una nota por debajo de la puerta
 
 (align:"==>")[ [[Responder]]
 [[Ignorar->Puerta]] ]
+
+
+:: Mensaje hermano {"position":"300,2150","size":"100,100"}
+(align:"=><=")+(text-style:"italic")[Juan hermano]
+<div class="textMessage">$name, has visto las noticias de hoy?
+</div>
+<div class="textMessage"> [[ultimasnoticias.com->FinalBueno]]
+</div>
+
 
 
 :: Mensaje2 {"position":"725,925","size":"100,100"}
@@ -145,13 +276,39 @@ Me han pasado una nota por debajo de la puerta
 [[Continuar->Viernes]]
 
 
+:: Mirar atrás {"position":"600,2100","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/BosqueMirarAtras.jpg" width="100%">
+(set:$timer to (random:5,10))\
+|2>[(text-size:1.5)[Rápido, hay que actuar: $timer]]
+(live:1s)[(set:$timer to it - 1)(rerun:?2)(if:$timer is 0)[(go-to:"Golpe")]]
+Están cerca, no sé si me van a atrapar...
+[[Atacar]]
+[[Seguir corriendo]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/heartbeat-sound-effects-for-you-122458.mp3" autoplay>
+
+
 :: Mirar por la mirilla {"position":"1000,925","size":"100,100"}
 <Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Door.jpg" width="100%">
 
 [[Abrir la puerta]]
-[[Ignorar->Ignorar puerta]]
+[[Ignorar->SueloNota]]
 
 <audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/knocking-on-door.mp3" autoplay loop>
+
+
+:: Muerte {"position":"800,1850","size":"100,100"}
+<!-- Final Muerte -->\
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Noticias1.jpg" width="100%">
+
+(text-rotate-x:180)+(text-rotate-y:180)+(text-color:red)+(text-style:"bold","blink","strike")[FIN]
+
+[[Volver a intentarlo->Notification]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/tv-news-logo-154117.mp3" autoplay id="news">
+<script>
+  var audio = document.getElementById("news");
+  audio.volume = 0.1;
+</script>
 
 
 :: No contestar mail {"position":"825,550","size":"100,100"}
@@ -198,16 +355,34 @@ Me han pasado una nota por debajo de la puerta
 :: Nuevo Correo {"position":"700,50","size":"100,100"}
 <Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/GlitchNewMail.gif" width="100%" height="auto" style="border-radius:25px">\
 (align:"=><=")+(text-size:2)+(text-colour: white)+(text-style:"bold","underline")[[[Comenzar->Custom]]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/static-noise-194184.mp3" autoplay>
+
+
+:: Pedir ayuda {"position":"875,2350","size":"100,100"}
+<Img src="https://github.com/AtelierDeKoa/NewMail/blob/master/Img/car-is-driving-road-night-forest.jpg?raw=true" width="100%">
+Menos mal que me han ayudado. Vamos directamente a la policia a denunciarlos...
+
+[[Poner fin a esta pesadilla->FinalDetencion]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/night-forest-soundscape-158701.mp3" autoplay>
 
 
 :: Pub {"position":"700,1225","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Pub.jpg" width="100%">
+Que raro, parece que está cerrado. Hay una nota en la puerta...
+[[Leer->Instrucciones]]
 
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/night-forest-soundscape-158701.mp3" autoplay> 
+
+
+:: Pueblo {"position":"675,2325","size":"100,100"}
+(go-to:"Golpe")
 
 
 :: Puerta {"position":"925,800","size":"100,100"}
 Están llamando a la puerta...
 [[Mirar por la mirilla]]
-[[Ignorar->Ignorar puerta]]
+[[Ignorar->(either:"SueloNota","Golpe")]]
 <audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/knocking-on-door.mp3" autoplay loop>
 
 
@@ -231,12 +406,95 @@ Están llamando a la puerta...
 (align:"==>")[[[Enviar->Mensaje2]]]
 
 
-:: Viernes {"position":"700,1100","size":"100,100"}
+:: Responder hermano {"position":"300,2525","size":"100,100"}
+<!-- Final asesino/a -->\
+(align:"=><=")+(text-style:"italic")[Juan hermano]
+<div class="textMessage">$name, has visto las noticias de hoy?
+</div>
+<div class="textMessage">[[ultimasnoticias.com->FinalBueno]]
+</div>
+<div class="textMessage">Dicen que son los de la clase del 2015
+</div>
+<div class="textMessage">Tú los conoces, no?
+</div>
+<div class="textMessage2">Sí, los conocía...
+</div>
 
+(text-rotate-x:180)+(text-rotate-y:180)+(text-color:red)+(text-style:"bold","blink","strike")[¿FIN?]
+[[Volver a intentarlo->Notification]]
+
+
+:: RitualBien {"position":"600,1725","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/dagger-1877117_1280.jpg" width="100%">
+*Jaime ríe*- ¡Te estábamos esperando, $name!
+Desde que nos unimos al señor de la oscuridad y nos contó que teníamos que hacer un ritual, todos pensamos en tí: tenemos un vínculo contigo, ya que fuimos todos juntos a clase y a ninguno nos caiste bien nunca.
+
+¡Nadie te va a echar de menos, $name, asúmelo!
+
+[[No entiendo nada, no me gustan estos juegos....-> Eleccion]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/sci-fi-survival-dreamscape-6319.mp3" autoplay>
+
+
+:: RitualMal {"position":"800,1725","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/dagger-1877117_1280.jpg" width="100%">
+*Jaime ríe* - Desde que nos unimos al señor de la oscuridad y nos contó que teníamos que hacer un ritual, todos pensamos en tí: tenemos un vínculo contigo, ya que fuimos todos juntos a clase y a ninguno nos caiste bien nunca.
+
+¡Nadie te va a echar de menos, $name, asúmelo!
+
+[[Intentas desatarte->Muerte]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/sci-fi-survival-dreamscape-6319.mp3" autoplay>
+
+
+:: Seguir corriendo {"position":"750,2100","size":"100,100"}
+(set:$timer to (random:5,10))\
+|2>[(text-size:1.5)[Rápido, hay que actuar: $timer]]
+(live:1s)[(set:$timer to it - 1)(rerun:?2)(if:$timer is 0)[(go-to:"Golpe")]]
+¿Voy al camino principal o cruzo bosque a través?
+[[Camino principal]]
+[[Bosque a través]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/the-sound-of-grass-in-the-forest-footsteps-248351.mp3" autoplay>
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/heartbeat-sound-effects-for-you-122458.mp3" autoplay loop>
+
+
+:: SueloNota {"position":"850,925","size":"100,100"}
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/SueloNota.jpg" width="100%">
+Me han pasado una nota por debajo de la puerta
+[[Leer nota->nota]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/papel-81613.mp3" autoplay>
+
+
+:: Viernes {"position":"700,1100","size":"100,100"}
+(align:"=><=")+(text-style:"underline")+(text-size:2)[Viernes 22:00]
+Los nervios se están apoderando de mi, necesito calmerme.
+Espero no sentirme igual de insignificante que en aquella época...
+
+[[Ir al pub->Pub]]
+
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/some-memories-16007.mp3" autoplay id="someMemories">
+<script>
+  var audio = document.getElementById("someMemories");
+  audio.volume = 0.2;
+</script>
+
+
+:: Volver al chat {"position":"300,2400","size":"100,100"}
+(align:"=><=")+(text-style:"italic")[Juan hermano]
+<div class="textMessage">$name, has visto las noticias de hoy?
+</div>
+<div class="textMessage">[[ultimasnoticias.com->FinalBueno]]
+</div>
+<div class="textMessage">Dicen que son los de la clase del 2015
+</div>
+<div class="textMessage">Tú los conoces, no?
+</div>
+(align:"==>")[[Responder->Responder hermano]]
 
 
 :: nota {"position":"850,1050","size":"100,100"}
-<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Nota.png">
+<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/Nota.png" width="100%">
 Creo que voy a tener que ir...
 [[Continuar->Viernes]]
 
@@ -298,4 +556,9 @@ Creo que voy a tener que ir...
   justify-content: flex-end;
   margin-left: auto;
   margin-right: 0;
+}
+
+#bosqueMal{
+  animation-name:popUp;
+  animation-duration:2s;
 }
