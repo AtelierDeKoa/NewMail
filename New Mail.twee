@@ -110,6 +110,7 @@ Que figuras tan extrañas...
 Hay huesos de animales, me está dando mal rollo...
 
 [[Continuar->RitualBien]]
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/your-forest-footsteps-67678.mp3" autoplay>
 
 
 :: Camino principal {"position":"825,2225","size":"100,100"}
@@ -154,7 +155,7 @@ Por fin en casa. La cabeza me da vueltas, recuerdo todo como una pesadilla...
 
 :: Custom {"position":"700,175","size":"100,100"}
 (set:$name to (prompt:[Introduce tu nombre:],"","","Aceptar"))
-(if:$name is not "")[<div style="">Recomendamos jugar en PC o usar el modo pantalla horizontal y es necesario activar el volumen para una experiencia más inmersiva.</div>
+(if:$name is not "")[<div>Recomendamos (text-style:"underline")[jugar en PC] o usar el modo (text-style:"underline")[pantalla horizontal] y es necesario (text-style:"underline")[activar el volumen] para una experiencia más inmersiva.</div>
 
 [[Continuar->Notification]] ]
 
@@ -168,7 +169,6 @@ Por fin en casa. La cabeza me da vueltas, recuerdo todo como una pesadilla...
   var audio = document.getElementById("news");
   audio.volume = 0.1;
 </script>
-
 
 
 :: FinalDetencion {"position":"1000,2350","size":"100,100"}
@@ -186,15 +186,14 @@ Esta vez me he librado por los pelos, ¿podré hacerlo mejor?
 
 :: Golpe {"position":"800,1475","size":"100,100"}
 (set:$golpe to false)
-|2>[(if:(history:) contains "Puerta" and $golpe is false)[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/SueloNota.jpg" width="100%">\
+|2>[(if:(history:) contains "Huir" or "Atacar" and $golpe is false)[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/BosqueMirarAtras.jpg" width="100%">]\
+(else-if:(history:) contains "Puerta" and $golpe is false)[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/SueloNota.jpg" width="100%">\
 Me han pasado una nota por debajo de la puerta]\
-(else-if:(history:) contains "Instrucciones" and $golpe is false)[No me está gustando esto...]\
-(else-if:(history:) contains "Huir" or "Atacar" and $golpe is false)[<Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/BosqueMirarAtras.jpg" width="100%">]]
+(else-if:(history:) contains "Instrucciones" and $golpe is false)[No me está gustando esto...]]\
 
 (live:2s)[<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/golpe-fuerte-36583.mp3" autoplay>(stop:)]
 (live:3s)[(set:$golpe to true) (rerun:?2)(stop:)]
-(live:6s)[(if:(history:)contains "Huir")[(go-to:"Muerte")](else:)(go-to:"BosqueMal")]
-
+(live:6s)[(if:(history:)contains "Huir" or "Atacar")[(go-to:"Muerte")](else:)(go-to:"BosqueMal")]
 
 
 :: Graduacion {"position":"300,400","size":"100,100"}
@@ -253,7 +252,6 @@ Tengo que buscar ayuda, pero no sé si me siguen...
 </div>
 <div class="textMessage"> [[ultimasnoticias.com->FinalBueno]]
 </div>
-
 
 
 :: Mensaje2 {"position":"725,925","size":"100,100"}
@@ -355,7 +353,11 @@ Están cerca, no sé si me van a atrapar...
 :: Nuevo Correo {"position":"700,50","size":"100,100"}
 <Img src="https://raw.githubusercontent.com/AtelierDeKoa/NewMail/refs/heads/master/Img/GlitchNewMail.gif" width="100%" height="auto" style="border-radius:25px">\
 (align:"=><=")+(text-size:2)+(text-colour: white)+(text-style:"bold","underline")[[[Comenzar->Custom]]]
-<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/static-noise-194184.mp3" autoplay>
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/static-noise-194184.mp3" autoplay id="static">
+<script>
+  var audio = document.getElementById("static");
+  audio.volume = 0.1;
+</script>
 
 
 :: Pedir ayuda {"position":"875,2350","size":"100,100"}
@@ -372,7 +374,7 @@ Menos mal que me han ayudado. Vamos directamente a la policia a denunciarlos...
 Que raro, parece que está cerrado. Hay una nota en la puerta...
 [[Leer->Instrucciones]]
 
-<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/night-forest-soundscape-158701.mp3" autoplay> 
+<audio src="https://github.com/AtelierDeKoa/NewMail/raw/refs/heads/master/Audios/night-forest-soundscape-158701.mp3" autoplay>
 
 
 :: Pueblo {"position":"675,2325","size":"100,100"}
